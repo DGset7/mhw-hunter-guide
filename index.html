@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#1a1a2e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="MHW Guide">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="manifest" href="manifest.json">
+    <title>MHW Hunter Guide</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="screen-home" class="screen active">
+        <header class="home-header">
+            <div class="logo">
+                <span class="logo-icon">⚔️</span>
+                <h1>MHW Hunter Guide</h1>
+                <p class="subtitle">Manual do Caçador</p>
+            </div>
+        </header>
+        <main class="home-menu">
+            <button class="menu-card" onclick="navigateTo('bestiary')">
+                <span class="menu-icon">🐉</span>
+                <div>
+                    <h2>Bestiário</h2>
+                    <p>Todos os monstros, fraquezas e estratégias</p>
+                </div>
+                <span class="arrow">›</span>
+            </button>
+            <button class="menu-card" onclick="navigateTo('favorites')">
+                <span class="menu-icon">⭐</span>
+                <div>
+                    <h2>Favoritos</h2>
+                    <p>Seus monstros salvos para acesso rápido</p>
+                </div>
+                <span class="arrow">›</span>
+            </button>
+            <button class="menu-card disabled">
+                <span class="menu-icon">🤖</span>
+                <div>
+                    <h2>Assistente IA</h2>
+                    <p>Em breve — tire dúvidas durante a caçada</p>
+                </div>
+                <span class="badge">Em breve</span>
+            </button>
+        </main>
+        <footer class="home-footer">
+            <p>Funciona 100% offline • v1.0</p>
+        </footer>
+    </div>
+
+    <div id="screen-bestiary" class="screen">
+        <header class="top-bar">
+            <button class="back-btn" onclick="navigateTo('home')">‹</button>
+            <h2>Bestiário</h2>
+            <div class="spacer"></div>
+        </header>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="🔍 Buscar monstro..." oninput="filterMonsters()">
+        </div>
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="setFilter('all', this)">Todos</button>
+            <button class="filter-btn" onclick="setFilter('Grande Monstro', this)">Grandes</button>
+            <button class="filter-btn" onclick="setFilter('Dragão Ancião', this)">Dragões Anciões</button>
+            <button class="filter-btn" onclick="setFilter('Pequeno Monstro', this)">Pequenos</button>
+        </div>
+        <div id="monster-list" class="monster-list"></div>
+    </div>
+
+    <div id="screen-monster-detail" class="screen">
+        <header class="top-bar">
+            <button class="back-btn" onclick="navigateTo('bestiary')">‹</button>
+            <h2 id="detail-monster-name">Monstro</h2>
+            <button class="fav-btn" id="fav-btn" onclick="toggleFavorite()">☆</button>
+        </header>
+        <div id="monster-detail-content" class="detail-content"></div>
+    </div>
+
+    <div id="screen-favorites" class="screen">
+        <header class="top-bar">
+            <button class="back-btn" onclick="navigateTo('home')">‹</button>
+            <h2>Favoritos</h2>
+            <div class="spacer"></div>
+        </header>
+        <div id="favorites-list" class="monster-list"></div>
+        <div id="no-favorites" class="empty-state" style="display:none;">
+            <span class="empty-icon">⭐</span>
+            <p>Nenhum monstro favoritado ainda</p>
+            <small>Toque na ☆ na ficha do monstro para salvar</small>
+        </div>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
